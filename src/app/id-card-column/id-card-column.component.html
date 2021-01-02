@@ -1,0 +1,33 @@
+<div class="column">
+  <div class="title">
+    <h4>
+      {{ title }}
+      <span class="badge rounded-pill bg-primary text-light">
+        {{ cards ? cards.length : 0 }}</span
+      >
+    </h4>
+
+    <label [formGroup]="form" class="switch" *ngIf="canSwitch">
+      <input formControlName="formInput" type="checkbox" />
+      <span class="slider round"></span>
+    </label>
+
+    <button
+      type="button"
+      class="btn btn-outline-primary"
+      *ngIf="canLoad"
+      (click)="load()"
+    >
+      Load
+    </button>
+  </div>
+  <div class="container-fluid">
+    <div class="row">
+      <app-id-card
+        class="col-4"
+        *ngFor="let card of cards; trackBy: trackByFn"
+        [card]="card"
+      ></app-id-card>
+    </div>
+  </div>
+</div>

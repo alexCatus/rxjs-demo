@@ -1,0 +1,20 @@
+<div class="container">
+  <div class="row">
+    <app-id-card-column
+      #PromiseCards
+      class="col-6"
+      [title]="'With Promise'"
+      [canLoad]="true"
+      [cards]="cards | keyvalue"
+      (onLoad)="load()"
+    ></app-id-card-column>
+    <app-id-card-column
+      #ObservableCards
+      class="col-6"
+      [title]="'With Observable'"
+      [cards]="cardsFromObservable | keyvalue"
+      [canSwitch]="true"
+      (onSwitch)="switch($event)"
+    ></app-id-card-column>
+  </div>
+</div>

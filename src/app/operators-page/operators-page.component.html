@@ -1,0 +1,14 @@
+<div class="container">
+  <div class="row">
+    <app-id-card-column
+      class="col-6"
+      [title]="'Raw observable'"
+      [cards]="rawCards$ | async | keyvalue"
+    ></app-id-card-column>
+    <app-id-card-column
+      class="col-6"
+      [title]="'Piped observable'"
+      [cards]="pipedCards$ | async | keyvalue"
+    ></app-id-card-column>
+  </div>
+</div>

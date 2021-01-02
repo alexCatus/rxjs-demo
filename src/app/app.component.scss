@@ -1,0 +1,17 @@
+.buttons {
+  justify-content: flex-end;
+  button {
+    margin-right: 20px;
+  }
+}
+.navbar {
+  justify-content: flex-start;
+  padding-left: 20px;
+}
+.navbar-nav {
+  flex-direction: row;
+  padding-left: 2rem;
+  li {
+    margin-left: 20px;
+  }
+}
