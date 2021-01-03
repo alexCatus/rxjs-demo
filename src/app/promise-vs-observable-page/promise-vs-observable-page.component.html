@@ -3,7 +3,7 @@
     <app-id-card-column
       #PromiseCards
       class="col-6"
-      [title]="'With Promise'"
+      [title]="'Promise'"
       [canLoad]="true"
       [cards]="cards | keyvalue"
       (onLoad)="load()"
@@ -11,7 +11,7 @@
     <app-id-card-column
       #ObservableCards
       class="col-6"
-      [title]="'With Observable'"
+      [title]="'Observable'"
       [cards]="cardsFromObservable | keyvalue"
       [canSwitch]="true"
       (onSwitch)="switch($event)"

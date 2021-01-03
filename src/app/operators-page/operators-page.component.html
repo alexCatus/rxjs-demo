@@ -2,12 +2,12 @@
   <div class="row">
     <app-id-card-column
       class="col-6"
-      [title]="'Raw observable'"
+      [title]="'Raw'"
       [cards]="rawCards$ | async | keyvalue"
     ></app-id-card-column>
     <app-id-card-column
       class="col-6"
-      [title]="'Piped observable'"
+      [title]="'Piped'"
       [cards]="pipedCards$ | async | keyvalue"
     ></app-id-card-column>
   </div>

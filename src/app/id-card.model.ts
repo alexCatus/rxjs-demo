@@ -6,5 +6,6 @@ export interface IdCard {
     avatar: string;
     profileUrl: string;
     favoriteColor: string;
+    pictureId: number;
   };
 }
