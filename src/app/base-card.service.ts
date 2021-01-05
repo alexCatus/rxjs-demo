@@ -40,12 +40,6 @@ export class BaseCardService {
   addCard(card: Partial<IdCard>) {
     this.collectionReference.push().set(card);
   }
-  updateCard(key: string, value: Partial<IdCard>) {
-    this.db
-      .ref(this.path + '/' + key)
-      .push()
-      .set(value);
-  }
   flush() {
     this.collectionReference.remove();
   }

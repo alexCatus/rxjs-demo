@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { BehaviorSubject, empty, Observable, Subscription } from 'rxjs';
-import { switchMap, tap } from 'rxjs/operators';
+import { Observable, Subscription } from 'rxjs';
 import { IdCard } from '../id-card.model';
 import { LegoCardService } from '../lego-card.service';
 
@@ -24,8 +23,5 @@ export class PromiseVsObservablePageComponent implements OnInit {
 
   async load() {
     await this.service.cardsPromise().then((x) => (this.cards = x));
-  }
-  update(key: string) {
-    this.service.updateCard(key, {});
   }
 }

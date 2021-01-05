@@ -52,7 +52,6 @@ export class IdCardColumnComponent implements OnInit, OnChanges {
 
   constructor() {}
 
-  switchLego(isOn: boolean) {}
   ngOnDestroy(): void {
     if (this.cardsSubscription) {
       this.cardsSubscription.unsubscribe();
@@ -90,10 +89,6 @@ export class IdCardColumnComponent implements OnInit, OnChanges {
       this.cardsSubscription.unsubscribe();
     }
   }
-  update(key: string) {
-    this.onUpdate.emit(key);
-  }
-
   load() {
     this.onLoad.emit();
   }
