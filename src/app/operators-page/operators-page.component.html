@@ -1,14 +1,55 @@
+<nav class="navbar navbar-dark bg-light">
+  <div class="container-fluid nav-buttons">
+    <button
+      type="button"
+      class="btn btn-outline-success"
+      (click)="addHumanCard()"
+    >
+      Add Human Card
+    </button>
+    <button type="button" class="btn btn-outline-danger" (click)="flushHuman()">
+      Flush
+    </button>
+  </div>
+</nav>
+<nav class="navbar navbar-dark bg-light nav-buttons">
+  <label class="col-sm-2 col-form-label">Current operator :</label>
+  <form
+    [formGroup]="switchedStateForm"
+    class="form-inline my-2 my-lg-0 form-group row"
+  >
+    <select
+      id="select"
+      class="custom-select form-control mr-sm-2"
+      formControlName="select"
+    >
+      <option selected value="undefined">None</option>
+      <option
+        *ngFor="let operator of operators; let i = index"
+        [value]="operator"
+      >
+        {{ operator }}
+      </option>
+    </select>
+  </form>
+</nav>
 <div class="container">
   <div class="row">
     <app-id-card-column
-      class="col-6"
-      [title]="'Raw'"
-      [cards]="rawCards$ | async | keyvalue"
+      class="col-4"
+      [title]="'Lego'"
+      [cards$]="legoCards$"
     ></app-id-card-column>
     <app-id-card-column
-      class="col-6"
+      class="col-4"
       [title]="'Piped'"
-      [cards]="pipedCards$ | async | keyvalue"
+      [cards$]="pipedCards$"
+      (onSwitch)="switchPiped($event)"
+    ></app-id-card-column>
+    <app-id-card-column
+      class="col-4"
+      [title]="'Human'"
+      [cards$]="humanCards$"
     ></app-id-card-column>
   </div>
 </div>

@@ -4,17 +4,14 @@
       #PromiseCards
       class="col-6"
       [title]="'Promise'"
-      [canLoad]="true"
-      [cards]="cards | keyvalue"
+      [cards]="cards"
       (onLoad)="load()"
     ></app-id-card-column>
     <app-id-card-column
       #ObservableCards
       class="col-6"
       [title]="'Observable'"
-      [cards]="cardsFromObservable | keyvalue"
-      [canSwitch]="true"
-      (onSwitch)="switch($event)"
+      [cards$]="cards$"
     ></app-id-card-column>
   </div>
 </div>

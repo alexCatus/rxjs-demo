@@ -11,15 +11,20 @@
 </nav>
 
 <nav class="navbar navbar-dark bg-light">
-  <div class="container-fluid buttons">
-    <button type="button" class="btn btn-outline-success" (click)="addCard()">
-      Add Card
+  <div class="container-fluid nav-buttons">
+    <button
+      type="button"
+      class="btn btn-outline-success"
+      (click)="addLegoCard()"
+    >
+      Add Lego Card
     </button>
-    <button type="button" class="btn btn-outline-danger" (click)="flush()">
+    <button type="button" class="btn btn-outline-danger" (click)="flushLego()">
       Flush
     </button>
   </div>
 </nav>
+
 <main>
   <router-outlet></router-outlet>
 </main>

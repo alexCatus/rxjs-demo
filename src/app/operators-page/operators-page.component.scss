@@ -3,8 +3,25 @@
 }
 
 .buttons {
-  display: flex;
+  flex-direction: column;
 }
 .group {
   display: flex;
+}
+
+.title {
+  padding: 10px;
+}
+.btn {
+  margin-bottom: 10px;
+}
+select {
+  width: auto;
+}
+.nav-buttons {
+  justify-content: flex-end;
+  button,
+  form {
+    margin-right: 20px;
+  }
 }

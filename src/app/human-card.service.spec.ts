@@ -1,12 +1,12 @@
 import { TestBed } from '@angular/core/testing';
 
-import { IdCardService } from './id-card.service';
+import { HumanCardService } from './human-card.service';
 
-describe('IdCardService', () => {
+describe('HumanCardService', () => {
   beforeEach(() => TestBed.configureTestingModule({}));
 
   it('should be created', () => {
-    const service: IdCardService = TestBed.get(IdCardService);
+    const service: HumanCardService = TestBed.get(HumanCardService);
     expect(service).toBeTruthy();
   });
 });

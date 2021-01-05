@@ -1,8 +1,26 @@
 import { Component, OnInit } from '@angular/core';
-import { BehaviorSubject, empty, Observable } from 'rxjs';
-import { delay, map, switchMap } from 'rxjs/operators';
-import { IdCard } from '../id-card.model';
-import { IdCardService } from '../id-card.service';
+import { FormBuilder, FormGroup } from '@angular/forms';
+import {
+  BehaviorSubject,
+  empty,
+  merge,
+  Observable,
+  Subject,
+  Subscription,
+} from 'rxjs';
+import {
+  combineAll,
+  defaultIfEmpty,
+  delay,
+  map,
+  switchMap,
+  takeLast,
+  takeUntil,
+  tap,
+} from 'rxjs/operators';
+import { HumanCardService } from '../human-card.service';
+import { generateCard, IdCard } from '../id-card.model';
+import { LegoCardService } from '../lego-card.service';
 
 @Component({
   selector: 'app-operators-page',
@@ -10,17 +28,84 @@ import { IdCardService } from '../id-card.service';
   styleUrls: ['./operators-page.component.scss'],
 })
 export class OperatorsPageComponent implements OnInit {
-  cards: { key: IdCard }[];
-  rawCards$: BehaviorSubject<{ [key: string]: IdCard }> = this.service.cards$;
+  operators = ['delay', 'takeLast', 'combine'];
 
-  pipedCards$: Observable<{ [key: string]: IdCard }> = this.service.cards$.pipe(
-    map((x) => x),
-    delay(1000)
-  );
+  legoCards$: Observable<IdCard[]>;
 
-  constructor(private service: IdCardService) {}
+  humanCards$: Observable<IdCard[]>;
+  pipedCards$: Observable<IdCard[]>;
+
+  switchedStateSubscription: Subscription;
+  switchedStateForm: FormGroup = this.fb.group({ select: [] });
+
+  stopPipedObservable: Subject<void> = new Subject();
+  constructor(
+    private legoService: LegoCardService,
+    private humanService: HumanCardService,
+    private fb: FormBuilder
+  ) {}
 
   ngOnInit() {
-    this.service.loadCards();
+    this.legoService.loadCards();
+    this.legoCards$ = this.legoService.cards$;
+    this.humanService.loadCards();
+    this.humanCards$ = this.humanService.cards$;
+    this.defaultPipedObservable();
+    this.switchedStateSubscription = this.switchedStateForm.valueChanges
+      .pipe(
+        map((form) => {
+          switch (form.select) {
+            case 'delay':
+              return this.addDelay();
+            case 'takeLast':
+              return this.takeLast(1);
+            case 'combine':
+              return this.combine();
+            default:
+              return this.defaultPipedObservable();
+          }
+        })
+      )
+      .subscribe();
+  }
+
+  ngOnDestroy(): void {
+    if (this.switchedStateSubscription) {
+      this.switchedStateSubscription.unsubscribe();
+    }
+  }
+  addHumanCard() {
+    let newCard = generateCard(true);
+    this.humanService.addCard(newCard);
+  }
+  flushHuman() {
+    this.humanService.flush();
+  }
+
+  switchPiped(isOn: boolean) {
+    console.log('isON', isOn);
+    if (!!isOn) {
+      this.switchedStateForm.disable({ emitEvent: false });
+    } else {
+      this.stopPipedObservable.next();
+      this.switchedStateForm.enable({ emitEvent: false });
+    }
+  }
+
+  defaultPipedObservable() {
+    this.pipedCards$ = this.legoService.cards$;
+  }
+
+  addDelay(seconds: number = 1) {
+    this.pipedCards$ = this.legoService.cards$.pipe(delay(seconds * 1000));
+  }
+  takeLast(event: number = 1) {
+    this.pipedCards$ = this.legoService.cards$.pipe(
+      takeUntil(this.stopPipedObservable),
+      takeLast(event)
+    );
+  }
+  combine() {
+    this.pipedCards$ = merge(this.legoService.cards$, this.humanService.cards$);
   }
 }

@@ -3,19 +3,29 @@
     <h4>
       {{ title }}
       <span class="badge rounded-pill bg-primary text-light">
-        {{ cards ? cards.length : 0 }}</span
+        {{ cards.length }}</span
       >
     </h4>
-
-    <label [formGroup]="form" class="switch" *ngIf="canSwitch">
-      <input formControlName="formInput" type="checkbox" />
-      <span class="slider round"></span>
-    </label>
-
+    <div
+      class="custom-control custom-switch"
+      [formGroup]="form"
+      *ngIf="!!cards$"
+    >
+      <input
+        formControlName="formInput"
+        type="checkbox"
+        class="custom-control-input"
+        [id]="'customSwitch' + title"
+      />
+      <label
+        class="custom-control-label"
+        [for]="'customSwitch' + title"
+      ></label>
+    </div>
     <button
+      *ngIf="!cards$"
       type="button"
-      class="btn btn-outline-primary"
-      *ngIf="canLoad"
+      class="btn btn-outline-primary btn-sm"
       (click)="load()"
     >
       Load

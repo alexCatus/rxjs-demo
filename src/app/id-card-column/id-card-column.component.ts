@@ -1,28 +1,45 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnChanges,
+  OnInit,
+  Output,
+  SimpleChanges,
+} from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { Subscription } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { IdCard } from '../id-card.model';
-import { map } from 'rxjs/operators';
-
+import { tap } from 'rxjs/operators';
+import * as _ from 'lodash';
 @Component({
   selector: 'app-id-card-column',
   templateUrl: './id-card-column.component.html',
   styleUrls: ['./id-card-column.component.scss'],
 })
-export class IdCardColumnComponent implements OnInit {
+export class IdCardColumnComponent implements OnInit, OnChanges {
+  isOn: boolean = false;
+  cardsSubscription: Subscription;
+  formSubscription: Subscription;
+
+  form = new FormGroup({
+    formInput: new FormControl(),
+  });
+
   @Input()
   title: string;
 
   @Input()
-  cards: IdCard[];
+  cards$: Observable<IdCard[]>;
+
+  @Input()
+  cards: IdCard[] = [];
 
   @Input()
   canSwitch: boolean = false;
 
   @Input()
   canLoad: boolean = false;
-
-  isLoading: boolean = false;
 
   @Output()
   onUpdate: EventEmitter<string> = new EventEmitter<string>();
@@ -33,23 +50,45 @@ export class IdCardColumnComponent implements OnInit {
   @Output()
   onLoad: EventEmitter<void> = new EventEmitter();
 
-  subscription: Subscription;
-
-  form = new FormGroup({
-    formInput: new FormControl(),
-  });
-
   constructor() {}
+
+  switchLego(isOn: boolean) {}
   ngOnDestroy(): void {
-    if (this.subscription) {
-      this.subscription.unsubscribe();
+    if (this.cardsSubscription) {
+      this.cardsSubscription.unsubscribe();
+    }
+    if (this.formSubscription) {
+      this.formSubscription.unsubscribe();
     }
   }
 
+  ngOnChanges(changes: SimpleChanges): void {
+    const currentValue$ = _.get(changes['cards$'], 'currentValue');
+    if (!!currentValue$) {
+      this.cards$ = currentValue$.pipe(
+        tap((cards) => {
+          this.cards = cards as any;
+        })
+      );
+    }
+  }
   ngOnInit() {
-    this.subscription = this.form.controls.formInput.valueChanges
-      .pipe(map((x) => this.onSwitch.emit(x)))
+    this.formSubscription = this.form.controls.formInput.valueChanges
+      .pipe(
+        tap((x) => {
+          this.isOn = x;
+          this.switch();
+        })
+      )
       .subscribe();
+  }
+  switch() {
+    this.onSwitch.emit(this.isOn);
+    if (!!this.isOn || !this.cardsSubscription) {
+      this.cardsSubscription = this.cards$.subscribe();
+    } else {
+      this.cardsSubscription.unsubscribe();
+    }
   }
   update(key: string) {
     this.onUpdate.emit(key);
@@ -57,9 +96,8 @@ export class IdCardColumnComponent implements OnInit {
 
   load() {
     this.onLoad.emit();
-    console.log('load');
   }
   trackByFn(index, item: IdCard) {
-    return item.key;
+    return index;
   }
 }
