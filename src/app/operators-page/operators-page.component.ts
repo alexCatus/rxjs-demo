@@ -1,23 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import {
-  BehaviorSubject,
-  empty,
-  merge,
-  Observable,
-  Subject,
-  Subscription,
-} from 'rxjs';
-import {
-  combineAll,
-  defaultIfEmpty,
-  delay,
-  map,
-  switchMap,
-  takeLast,
-  takeUntil,
-  tap,
-} from 'rxjs/operators';
+import { merge, Observable, Subject, Subscription } from 'rxjs';
+import { delay, map, takeLast, takeUntil } from 'rxjs/operators';
 import { HumanCardService } from '../human-card.service';
 import { generateCard, IdCard } from '../id-card.model';
 import { LegoCardService } from '../lego-card.service';
@@ -83,7 +67,6 @@ export class OperatorsPageComponent implements OnInit {
   }
 
   switchPiped(isOn: boolean) {
-    console.log('isON', isOn);
     if (!!isOn) {
       this.switchedStateForm.disable({ emitEvent: false });
     } else {
