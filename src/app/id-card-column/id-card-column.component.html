@@ -1,7 +1,7 @@
 <div class="column">
   <div class="title">
     <h4>
-      {{ title }}
+      {{ description.name }}
       <span class="badge rounded-pill bg-primary text-light">
         {{ cards.length }}</span
       >
@@ -15,11 +15,11 @@
         formControlName="formInput"
         type="checkbox"
         class="custom-control-input"
-        [id]="'customSwitch' + title"
+        [id]="'customSwitch' + description.name"
       />
       <label
         class="custom-control-label"
-        [for]="'customSwitch' + title"
+        [for]="'customSwitch' + description.name"
       ></label>
     </div>
     <button
@@ -31,6 +31,9 @@
       Load
     </button>
   </div>
+  <div class="container-fluid" *ngIf="description">
+    <code>{{ description.code }}</code>
+  </div>
   <div class="container-fluid">
     <div class="row">
       <app-id-card
@@ -39,5 +42,9 @@
         [card]="card"
       ></app-id-card>
     </div>
+  </div>
+
+  <div class="container-fluid" *ngIf="description && cards.length > 0">
+    <code>{{ description.test }}</code>
   </div>
 </div>

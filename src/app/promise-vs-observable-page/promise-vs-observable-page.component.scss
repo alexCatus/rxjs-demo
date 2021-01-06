@@ -8,3 +8,14 @@
 .group {
   display: flex;
 }
+.nav-buttons {
+  justify-content: center !important;
+  button {
+    margin-right: 20px;
+  }
+}
+
+.column {
+  padding: 10px;
+  max-width: 550px;
+}

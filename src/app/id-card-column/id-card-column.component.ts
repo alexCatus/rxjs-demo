@@ -8,8 +8,8 @@ import {
   SimpleChanges,
 } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { Observable, Subscription } from 'rxjs';
-import { IdCard } from '../id-card.model';
+import { Observable, Operator, Subscription } from 'rxjs';
+import { IdCard, CodeDescription } from '../id-card.model';
 import { tap } from 'rxjs/operators';
 import * as _ from 'lodash';
 @Component({
@@ -28,6 +28,9 @@ export class IdCardColumnComponent implements OnInit, OnChanges {
 
   @Input()
   title: string;
+
+  @Input()
+  description: CodeDescription;
 
   @Input()
   cards$: Observable<IdCard[]>;

@@ -1,9 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { merge, Observable, Subject, Subscription } from 'rxjs';
+import { merge, Observable, Operator, Subject, Subscription } from 'rxjs';
 import { delay, map, takeLast, takeUntil } from 'rxjs/operators';
 import { HumanCardService } from '../human-card.service';
-import { generateCard, IdCard } from '../id-card.model';
+import {
+  generateCard,
+  IdCard,
+  CodeDescription,
+  operatorsDescriptions,
+  legoObservableDescription,
+  humanObservableDescription,
+} from '../id-card.model';
 import { LegoCardService } from '../lego-card.service';
 
 @Component({
@@ -12,7 +19,13 @@ import { LegoCardService } from '../lego-card.service';
   styleUrls: ['./operators-page.component.scss'],
 })
 export class OperatorsPageComponent implements OnInit {
-  operators = ['delay', 'takeLast', 'combine'];
+  selectedCode: string = '';
+
+  operatorsDescriptions = operatorsDescriptions;
+
+  legoDescription = legoObservableDescription;
+  humanDescription = humanObservableDescription;
+  operators: string[] = ['delay', 'takeLast', 'combine'];
 
   legoCards$: Observable<IdCard[]>;
 
@@ -64,6 +77,14 @@ export class OperatorsPageComponent implements OnInit {
   }
   flushHuman() {
     this.humanService.flush();
+  }
+  addLegoCard() {
+    let newCard = generateCard(false);
+    this.legoService.addCard(newCard);
+  }
+
+  flushLego() {
+    this.legoService.flush();
   }
 
   switchPiped(isOn: boolean) {

@@ -1,17 +1,39 @@
+<nav class="navbar navbar-dark bg-light">
+  <div class="container nav-buttons">
+    <div class="column">
+      <button
+        type="button"
+        class="btn btn-outline-success"
+        (click)="addLegoCard()"
+      >
+        Add Lego Card
+      </button>
+    </div>
+    <div class="column">
+      <button
+        type="button"
+        class="btn btn-outline-danger"
+        (click)="flushLego()"
+      >
+        Flush
+      </button>
+    </div>
+  </div>
+</nav>
 <div class="container">
   <div class="row">
     <app-id-card-column
       #PromiseCards
       class="col-6"
-      [title]="'Promise'"
       [cards]="cards"
       (onLoad)="load()"
+      [description]="promiseDescription"
     ></app-id-card-column>
     <app-id-card-column
       #ObservableCards
       class="col-6"
-      [title]="'Observable'"
       [cards$]="cards$"
+      [description]="observableDescription"
     ></app-id-card-column>
   </div>
 </div>

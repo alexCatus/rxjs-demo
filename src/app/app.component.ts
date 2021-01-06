@@ -11,12 +11,4 @@ import { LegoCardService } from './lego-card.service';
 export class AppComponent {
   title = 'rxjs-demo';
   constructor(private legoService: LegoCardService) {}
-  addLegoCard() {
-    let newCard = generateCard(false);
-    this.legoService.addCard(newCard);
-  }
-
-  flushLego() {
-    this.legoService.flush();
-  }
 }

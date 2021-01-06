@@ -1,6 +1,13 @@
 import * as _ from 'lodash';
 import * as faker from 'faker';
 import * as emoji from 'random-emoji';
+
+export interface CodeDescription {
+  name?: string;
+  code: string;
+  test?: string;
+}
+
 export interface IdCard {
   username: string;
   email: string;
@@ -14,6 +21,45 @@ export enum TypeCard {
   HUMAN = 'human',
   LEGO = 'lego',
 }
+
+export const operatorsDescriptions = {
+  default: {
+    name: 'pipedCards$',
+    code: 'legoCards$.pipe()',
+    test: "'a' a:{legoCards}",
+  },
+  delay: {
+    name: 'pipedCards$',
+    code: 'legoCards$.pipe(delay(1000))',
+    test: "'1000ms a' a:{legoCards}",
+  },
+  takeLast: {
+    name: 'pipedCards$',
+    code: 'legoCards$.pipe(takeLast())',
+    test: "'(a|)' a:{legoCards}",
+  },
+  combine: {
+    name: 'pipedCards$',
+    code: 'combine(legoCards$,humanCards)',
+    test: "'a b' {a:legoCards, b:humanCards}",
+  },
+};
+
+export const legoObservableDescription: CodeDescription = {
+  name: 'legoCards$',
+  code: 'legoCards$',
+  test: "'a' a:{legoCards}",
+};
+
+export const legoPromiseDescription: CodeDescription = {
+  name: 'legoCards',
+  code: ' await this.service.cardsPromise()',
+};
+export const humanObservableDescription: CodeDescription = {
+  name: 'humanCards$',
+  code: 'humanCards$',
+  test: "'b' b:{humanCards}",
+};
 
 export function generateCard(isHuman: boolean, partial?: Partial<IdCard>) {
   let path = isHuman ? _.sample(['men', 'women']) : 'lego';

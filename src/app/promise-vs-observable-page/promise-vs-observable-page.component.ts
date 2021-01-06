@@ -1,6 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable, Subscription } from 'rxjs';
-import { IdCard } from '../id-card.model';
+import {
+  generateCard,
+  IdCard,
+  legoObservableDescription,
+  legoPromiseDescription,
+} from '../id-card.model';
 import { LegoCardService } from '../lego-card.service';
 
 @Component({
@@ -14,6 +19,9 @@ export class PromiseVsObservablePageComponent implements OnInit {
   cards$: Observable<IdCard[]>;
   subscription: Subscription;
 
+  promiseDescription = legoPromiseDescription;
+  observableDescription = legoObservableDescription;
+
   constructor(private service: LegoCardService) {}
 
   ngOnInit() {
@@ -23,5 +31,13 @@ export class PromiseVsObservablePageComponent implements OnInit {
 
   async load() {
     await this.service.cardsPromise().then((x) => (this.cards = x));
+  }
+  addLegoCard() {
+    let newCard = generateCard(false);
+    this.service.addCard(newCard);
+  }
+
+  flushLego() {
+    this.service.flush();
   }
 }
