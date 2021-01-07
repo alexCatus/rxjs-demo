@@ -11,7 +11,7 @@ import { first, map, tap } from 'rxjs/operators';
 export abstract class BaseCardService {
   dbPath;
   cards$: Observable<any>;
-  constructor(private db: AngularFireDatabase, private path) {
+  constructor(db: AngularFireDatabase, path: string) {
     this.dbPath = db.list<IdCard>(path);
     this.cards$ = this.dbPath.valueChanges();
   }
