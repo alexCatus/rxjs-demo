@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { merge, Observable, Subject, Subscription } from 'rxjs';
 import {
@@ -24,6 +24,7 @@ import {
   selector: 'app-operators-page',
   templateUrl: './operators-page-row.component.html',
   styleUrls: ['./operators-page-row.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class OperatorsPageRowComponent implements OnInit {
   COLORS = COLORS;
@@ -126,6 +127,7 @@ export class OperatorsPageRowComponent implements OnInit {
     this.pipedColor$ = this.firstColor$.pipe(take(1));
   }
   filter() {
+    console.log('here');
     this.pipedColor$ = this.firstColor$.pipe(filter((x) => x != COLORS.RED));
   }
   distinctUntilChanged() {

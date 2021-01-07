@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Inject, Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { IdCard } from './id-card.model';
 import * as _ from 'lodash';
@@ -11,7 +11,7 @@ import { first, map, tap } from 'rxjs/operators';
 export abstract class BaseCardService {
   dbPath;
   cards$: Observable<any>;
-  constructor(db: AngularFireDatabase, path: string) {
+  constructor(db: AngularFireDatabase, @Inject(String) path: string) {
     this.dbPath = db.list<IdCard>(path);
     this.cards$ = this.dbPath.valueChanges();
   }
