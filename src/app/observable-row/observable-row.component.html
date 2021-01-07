@@ -1,0 +1,45 @@
+<div class="row">
+  <div class="column col-2">
+    <button
+      *ngFor="let color of listColors"
+      type="button"
+      class="btn btn-sm btn-block"
+      [style.background-color]="color"
+      (click)="onClick(color)"
+    ></button>
+  </div>
+  <div class="column col-10">
+    <div class="title">
+      <code
+        >{{ description.code }}
+        <ng-container *ngIf="isOn === true">.subscribe()</ng-container></code
+      >
+
+      <div class="custom-control custom-switch" [formGroup]="form">
+        <input
+          #switch
+          formControlName="formInput"
+          type="checkbox"
+          class="custom-control-input"
+          [id]="'customSwitch' + description.name"
+        />
+        <label
+          class="custom-control-label"
+          [for]="'customSwitch' + description.name"
+        >
+        </label>
+      </div>
+    </div>
+    <div class="container-fluid" *ngIf="description"></div>
+    <div class="container-fluid">
+      <div class="row">
+        <div
+          *ngFor="let color of colors"
+          class="dot"
+          [style.background-color]="color"
+          [style.color]="'white'"
+        ></div>
+      </div>
+    </div>
+  </div>
+</div>

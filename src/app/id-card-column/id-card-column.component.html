@@ -1,11 +1,10 @@
 <div class="column">
   <div class="title">
-    <h4>
-      {{ description.name }}
-      <span class="badge rounded-pill bg-primary text-light">
-        {{ cards.length }}</span
-      >
-    </h4>
+    <code
+      >{{ description.code }}
+      <ng-container *ngIf="isOn === true">.subscribe()</ng-container></code
+    >
+
     <div
       class="custom-control custom-switch"
       [formGroup]="form"
@@ -20,7 +19,8 @@
       <label
         class="custom-control-label"
         [for]="'customSwitch' + description.name"
-      ></label>
+      >
+      </label>
     </div>
     <button
       *ngIf="!cards$"
@@ -31,9 +31,7 @@
       Load
     </button>
   </div>
-  <div class="container-fluid" *ngIf="description">
-    <code>{{ description.code }}</code>
-  </div>
+  <div class="container-fluid" *ngIf="description"></div>
   <div class="container-fluid">
     <div class="row">
       <app-id-card
@@ -42,9 +40,5 @@
         [card]="card"
       ></app-id-card>
     </div>
-  </div>
-
-  <div class="container-fluid" *ngIf="description && cards.length > 0">
-    <code>{{ description.test }}</code>
   </div>
 </div>

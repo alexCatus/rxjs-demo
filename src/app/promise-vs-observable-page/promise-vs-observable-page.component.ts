@@ -25,12 +25,11 @@ export class PromiseVsObservablePageComponent implements OnInit {
   constructor(private service: LegoCardService) {}
 
   ngOnInit() {
-    this.service.loadCards();
     this.cards$ = this.service.cards$;
   }
 
   async load() {
-    await this.service.cardsPromise().then((x) => (this.cards = x));
+    this.cards = await this.service.cardsPromise();
   }
   addLegoCard() {
     let newCard = generateCard(false);

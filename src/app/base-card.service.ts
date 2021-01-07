@@ -1,46 +1,28 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { IdCard } from './id-card.model';
-import * as firebase from 'firebase';
 import * as _ from 'lodash';
+
+import { AngularFireDatabase } from '@angular/fire/database';
+import { first, map, tap } from 'rxjs/operators';
 @Injectable({
   providedIn: 'root',
 })
-export class BaseCardService {
-  db;
-  private collectionReference;
-  cards$: BehaviorSubject<IdCard[]> = new BehaviorSubject([]);
-  constructor(private path: string) {
-    this.db = firebase.database();
-    this.collectionReference = this.db.ref(this.path);
-  }
-  loadCards() {
-    this.collectionReference.on('value', (snapshot) => {
-      let obj = _.reverse(snapshot.val());
-      if (!!obj) {
-        obj = Object.values(obj);
-        return this.cards$.next(obj);
-      }
-      return this.cards$.next([]);
-    });
+export abstract class BaseCardService {
+  dbPath;
+  cards$: Observable<any>;
+  constructor(private db: AngularFireDatabase, private path) {
+    this.dbPath = db.list<IdCard>(path);
+    this.cards$ = this.dbPath.valueChanges();
   }
 
   cardsPromise(): Promise<IdCard[]> {
-    return new Promise((resolve, reject) => {
-      this.collectionReference.on('value', (snapshot) => {
-        let obj = _.reverse(snapshot.val());
-        if (!!obj) {
-          obj = Object.values(obj);
-          resolve(obj);
-        }
-        resolve([]);
-      });
-    });
+    return this.dbPath.valueChanges().pipe(first()).toPromise();
   }
   addCard(card: Partial<IdCard>) {
-    this.collectionReference.push().set(card);
+    this.dbPath.push(card);
   }
   flush() {
-    this.collectionReference.remove();
+    this.dbPath.remove();
   }
 }

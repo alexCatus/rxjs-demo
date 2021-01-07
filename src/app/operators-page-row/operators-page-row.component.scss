@@ -1,0 +1,51 @@
+.main {
+  display: flex;
+}
+
+.buttons {
+  flex-direction: column;
+}
+.group {
+  display: flex;
+}
+
+.title {
+  padding: 10px;
+}
+.btn {
+  margin-bottom: 10px;
+}
+select {
+  width: auto;
+  margin-left: 10px;
+}
+
+.column {
+  border: solid #f8f9fa;
+  border-radius: 3px;
+  padding: 10px;
+  min-height: 615px;
+  background-color: white;
+}
+
+code {
+  white-space: pre;
+}
+.title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0;
+  padding: 0;
+  margin-bottom: 20px;
+}
+
+.code {
+  color: black;
+}
+
+.test {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}

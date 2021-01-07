@@ -33,11 +33,12 @@ export const operatorsDescriptions = {
     code: 'legoCards$.pipe(delay(1000))',
     test: "'1000ms a' a:{legoCards}",
   },
-  takeLast: {
+  filter: {
     name: 'pipedCards$',
-    code: 'legoCards$.pipe(takeLast())',
-    test: "'(a|)' a:{legoCards}",
+    code: 'combine(legoCards$,humanCards).filter(',
+    test: "'a b' {a:legoCards, b:humanCards}",
   },
+
   combine: {
     name: 'pipedCards$',
     code: 'combine(legoCards$,humanCards)',

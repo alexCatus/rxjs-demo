@@ -2,8 +2,7 @@
   border: solid #f8f9fa;
   border-radius: 3px;
   padding: 10px;
-  max-width: 570px;
-  min-height: 615px;
+  min-height: 200px;
   background-color: white;
 }
 .card {
@@ -34,4 +33,20 @@
   align-items: center;
   justify-content: space-between;
   margin-bottom: 20px;
+}
+
+.dot {
+  max-height: 25px;
+  height: 25px;
+  max-width: 25px;
+  width: 25px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 10px;
+}
+.btn {
+  height: 50px;
 }

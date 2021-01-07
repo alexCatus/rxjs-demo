@@ -1,0 +1,19 @@
+{
+  "hosting": [
+    {
+      "target": "rxjs-demo",
+      "public": "dist/rxjs-demo",
+      "ignore": [
+        "firebase.json",
+        "**/.*",
+        "**/node_modules/**"
+      ],
+      "rewrites": [
+        {
+          "source": "**",
+          "destination": "/index.html"
+        }
+      ]
+    }
+  ]
+}

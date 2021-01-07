@@ -65,6 +65,7 @@ export class IdCardColumnComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
+    console.log('changes', changes);
     const currentValue$ = _.get(changes['cards$'], 'currentValue');
     if (!!currentValue$) {
       this.cards$ = currentValue$.pipe(

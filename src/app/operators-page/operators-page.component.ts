@@ -43,9 +43,7 @@ export class OperatorsPageComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.legoService.loadCards();
     this.legoCards$ = this.legoService.cards$;
-    this.humanService.loadCards();
     this.humanCards$ = this.humanService.cards$;
     this.defaultPipedObservable();
     this.switchedStateSubscription = this.switchedStateForm.valueChanges

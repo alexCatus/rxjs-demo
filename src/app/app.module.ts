@@ -1,6 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import * as firebase from 'firebase';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { IdCardComponent } from './id-card/id-card.component';
@@ -9,6 +8,10 @@ import { PromiseVsObservablePageComponent } from './promise-vs-observable-page/p
 import { ReactiveFormsModule } from '@angular/forms';
 import { OperatorsPageComponent } from './operators-page/operators-page.component';
 import { environment } from 'src/environments/environment';
+import { AngularFireModule } from '@angular/fire';
+import { AngularFireDatabaseModule } from '@angular/fire/database';
+import { ObservableRowComponent } from './observable-row/observable-row.component';
+import { OperatorsPageRowComponent } from './operators-page-row/operators-page-row.component';
 
 @NgModule({
   declarations: [
@@ -17,13 +20,19 @@ import { environment } from 'src/environments/environment';
     IdCardColumnComponent,
     PromiseVsObservablePageComponent,
     OperatorsPageComponent,
+    ObservableRowComponent,
+    OperatorsPageRowComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, ReactiveFormsModule],
+  imports: [
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireDatabaseModule,
+    BrowserModule,
+    AppRoutingModule,
+    ReactiveFormsModule,
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })
 export class AppModule {
-  constructor() {
-    firebase.initializeApp(environment.firebaseConfig);
-  }
+  constructor() {}
 }
