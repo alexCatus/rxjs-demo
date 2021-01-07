@@ -1,15 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { merge, Observable, Operator, Subject, Subscription } from 'rxjs';
+import { merge, Observable, Subject, Subscription } from 'rxjs';
 import { delay, map, takeLast, takeUntil } from 'rxjs/operators';
+
 import { HumanCardService } from '../human-card.service';
 import {
   generateCard,
-  IdCard,
-  CodeDescription,
-  operatorsDescriptions,
-  legoObservableDescription,
   humanObservableDescription,
+  IdCard,
+  legoObservableDescription,
+  operatorsDescriptions,
 } from '../id-card.model';
 import { LegoCardService } from '../lego-card.service';
 

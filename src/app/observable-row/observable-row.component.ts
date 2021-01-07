@@ -1,10 +1,11 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { merge, Observable, Subject, Subscription, timer } from 'rxjs';
-import { IdCard, CodeDescription } from '../id-card.model';
-import { debounceTime, tap } from 'rxjs/operators';
-import * as _ from 'lodash';
-import { COLORS, listColors } from '../colors.model';
+import { Observable, Subject, Subscription } from 'rxjs';
+import { tap } from 'rxjs/operators';
+
+import { COLORS } from '../colors.model';
+import { CodeDescription } from '../id-card.model';
+
 @Component({
   selector: 'app-observable-row',
   templateUrl: './observable-row.component.html',

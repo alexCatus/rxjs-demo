@@ -11,6 +11,7 @@ import {
   takeLast,
   takeUntil,
 } from 'rxjs/operators';
+
 import {
   COLORS,
   firstColorDescription,
@@ -18,9 +19,6 @@ import {
   pipedColorDescription,
   secondColorDescription,
 } from '../colors.model';
-import { HumanCardService } from '../human-card.service';
-
-import { LegoCardService } from '../lego-card.service';
 
 @Component({
   selector: 'app-operators-page',

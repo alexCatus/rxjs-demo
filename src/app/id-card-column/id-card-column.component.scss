@@ -7,10 +7,6 @@
   background-color: white;
 }
 .card {
-  max-height: 250px;
-  flex-direction: row;
-}
-.test {
   float: left;
   width: auto;
 }
@@ -23,11 +19,6 @@
   color: #fff;
   background-color: #006ac3;
   border-color: #006ac3;
-}
-.card-deck {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  grid-gap: 0.5rem;
 }
 .title {
   display: flex;

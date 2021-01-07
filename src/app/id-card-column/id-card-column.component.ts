@@ -8,10 +8,12 @@ import {
   SimpleChanges,
 } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { Observable, Operator, Subscription } from 'rxjs';
-import { IdCard, CodeDescription } from '../id-card.model';
-import { tap } from 'rxjs/operators';
 import * as _ from 'lodash';
+import { Observable, Subscription } from 'rxjs';
+import { tap } from 'rxjs/operators';
+
+import { CodeDescription, IdCard } from '../id-card.model';
+
 @Component({
   selector: 'app-id-card-column',
   templateUrl: './id-card-column.component.html',

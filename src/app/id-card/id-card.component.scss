@@ -1,11 +1,5 @@
 @import '../../variable';
 
-.id-card {
-  margin-bottom: 10px;
-  background-color: #ccc;
-  padding: 5px;
-}
-
 .card-header {
   @include font-size(0.7rem);
 }
