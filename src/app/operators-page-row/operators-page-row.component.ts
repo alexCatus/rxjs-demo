@@ -44,7 +44,7 @@ export class OperatorsPageRowComponent implements OnInit {
     'take',
     'filter',
     'distinctUntilChanged',
-    'combine',
+    'merge',
     'switchMap',
     'all',
   ];
@@ -69,8 +69,8 @@ export class OperatorsPageRowComponent implements OnInit {
               return this.takeFirst();
             case 'filter':
               return this.filter();
-            case 'combine':
-              return this.combine();
+            case 'merge':
+              return this.merge();
             case 'switchMap':
               return this.switchMap();
             case 'distinctUntilChanged':
@@ -139,7 +139,7 @@ export class OperatorsPageRowComponent implements OnInit {
       switchMap((x) => this.secondColor$)
     );
   }
-  combine() {
+  merge() {
     this.pipedColor$ = merge(this.firstColor$, this.secondColor$);
   }
   all() {

@@ -18,7 +18,7 @@ export const operatorsDescriptions = {
   },
   filter: {
     name: 'pipedColor$',
-    code: 'firstColor$.pipe(filter(x=>x!=Color.RED))',
+    code: 'firstColor$.pipe(filter((x) => x != COLORS.RED))',
     test: "'a b' {a:legoCards, b:humanCards}",
   },
   distinctUntilChanged: {
@@ -28,24 +28,24 @@ export const operatorsDescriptions = {
   },
   switchMap: {
     name: 'pipedColor$',
-    code: 'firstColor$.pipe(switchMap(x=>secondColor$))',
+    code: 'firstColor$.pipe(switchMap((x) => secondColor$))',
     test: "'a b' {a:legoCards, b:humanCards}",
   },
-  combine: {
+  merge: {
     name: 'pipedColor$',
-    code: 'combine(firstColor$,secondColor$)',
+    code: 'merge(firstColor$,secondColor$)',
     test: "'a b' {a:legoCards, b:humanCards}",
   },
   map: {
     name: 'pipedColor$',
-    code: 'this.firstColor$.pipe(map((x) => COLOR.purple))',
+    code: 'firstColor$.pipe(map((x) => COLORS.PURPLE))',
     test: "'a b' {a:legoCards, b:humanCards}",
   },
 
   all: {
     name: 'pipedColor$',
     code:
-      'merge(this.firstColor$, this.secondColor$).pipe( \n  delay(1000),  \n  distinctUntilChanged(),  \n filter((x) => x != COLOR.Red), \n map((x) => COLOR.purple))',
+      'merge(firstColor$, secondColor$).pipe(\n\tdelay(1000),\n\tdistinctUntilChanged(),\n\tfilter((x) => x != COLOR.Red),\n\tmap((x) => COLOR.purple))',
     test: "'a b' {a:legoCards, b:humanCards}",
   },
 };

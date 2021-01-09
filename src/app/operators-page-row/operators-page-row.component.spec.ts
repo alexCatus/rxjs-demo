@@ -9,6 +9,7 @@ import { OperatorsPageRowComponent } from './operators-page-row.component';
 describe('OperatorsPageRowComponent', () => {
   let component: OperatorsPageRowComponent;
 
+  //Todo : make the test pass
   describe('method1', () => {
     it.each`
       selectValue               | expectedMarbles | expectedValues
@@ -29,7 +30,7 @@ describe('OperatorsPageRowComponent', () => {
         component.ngOnInit();
         expect(component).toBeTruthy();
         component.firstColor$.next(COLORS.BLUE);
-
+        component.pipedColor$.subscribe();
         expect(component.firstColor$).toBeObservable(
           cold(expectedMarbles, expectedValues)
         );
