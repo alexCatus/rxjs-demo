@@ -1,12 +1,8 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { OperatorsPageRowComponent } from './operators-page-row/operators-page-row.component';
-import { PromiseVsObservablePageComponent } from './promise-vs-observable-page/promise-vs-observable-page.component';
+import { currentRoutes } from './data/navigation.items';
 
-const routes: Routes = [
-  { path: 'promises', component: PromiseVsObservablePageComponent },
-  { path: 'operators', component: OperatorsPageRowComponent },
-];
+const routes: Routes = currentRoutes;
 
 @NgModule({
   imports: [RouterModule.forRoot(routes, { relativeLinkResolution: 'legacy' })],

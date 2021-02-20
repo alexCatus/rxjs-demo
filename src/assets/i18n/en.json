@@ -1,0 +1,9 @@
+{
+  "navigation-menu-items": {
+    "operators": "Operators",
+    "promises": "Promises vs Observables",
+    "subscription": "Subscription",
+    "changeDetectionStrategy": "Change Detection Strategy",
+    "memoryLeak": "Memory Leak"
+  }
+}

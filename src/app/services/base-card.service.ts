@@ -1,10 +1,10 @@
 import { Inject, Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
-import { IdCard } from './id-card.model';
+import { Observable } from 'rxjs';
 import * as _ from 'lodash';
-
 import { AngularFireDatabase } from '@angular/fire/database';
-import { first, map, tap } from 'rxjs/operators';
+import { first } from 'rxjs/operators';
+import { IdCard } from '../models/id-card.model';
+
 @Injectable({
   providedIn: 'root',
 })

@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { IdCard } from '../id-card.model';
+import { IdCard } from 'src/app/models/id-card.model';
 
 @Component({
   selector: 'app-id-card',

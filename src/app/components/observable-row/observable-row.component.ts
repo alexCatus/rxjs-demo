@@ -2,9 +2,8 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Observable, Subject, Subscription } from 'rxjs';
 import { tap } from 'rxjs/operators';
-
-import { COLORS } from '../colors.model';
-import { CodeDescription } from '../id-card.model';
+import { COLORS } from 'src/app/models/colors.model';
+import { CodeDescription } from 'src/app/models/id-card.model';
 
 @Component({
   selector: 'app-observable-row',

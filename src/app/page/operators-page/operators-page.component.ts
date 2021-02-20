@@ -18,15 +18,15 @@ import {
   operatorsDescriptions,
   pipedColorDescription,
   secondColorDescription,
-} from '../colors.model';
+} from '../../models/colors.model';
 
 @Component({
   selector: 'app-operators-page',
-  templateUrl: './operators-page-row.component.html',
-  styleUrls: ['./operators-page-row.component.scss'],
+  templateUrl: './operators-page.component.html',
+  styleUrls: ['./operators-page.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class OperatorsPageRowComponent implements OnInit {
+export class OperatorsPageComponent implements OnInit {
   COLORS = COLORS;
   firstColor$: Subject<COLORS> = new Subject<COLORS>();
   secondColor$: Subject<COLORS> = new Subject<COLORS>();

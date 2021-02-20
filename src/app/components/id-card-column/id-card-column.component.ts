@@ -11,8 +11,7 @@ import { FormControl, FormGroup } from '@angular/forms';
 import * as _ from 'lodash';
 import { Observable, Subscription } from 'rxjs';
 import { tap } from 'rxjs/operators';
-
-import { CodeDescription, IdCard } from '../id-card.model';
+import { CodeDescription, IdCard } from 'src/app/models/id-card.model';
 
 @Component({
   selector: 'app-id-card-column',

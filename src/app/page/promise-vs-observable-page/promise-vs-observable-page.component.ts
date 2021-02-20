@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable, Subscription } from 'rxjs';
-
 import {
-  generateCard,
   IdCard,
-  legoObservableDescription,
   legoPromiseDescription,
-} from '../id-card.model';
-import { LegoCardService } from '../lego-card.service';
+  legoObservableDescription,
+  generateCard,
+} from 'src/app/models/id-card.model';
+
+import { LegoCardService } from '../../services/lego-card.service';
 
 @Component({
   selector: 'app-promise-vs-observable-page',

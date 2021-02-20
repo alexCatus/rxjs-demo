@@ -3,11 +3,11 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { cold } from 'jasmine-marbles';
 import { of } from 'rxjs';
-import { COLORS } from '../colors.model';
-import { OperatorsPageRowComponent } from './operators-page-row.component';
+import { COLORS } from '../../models/colors.model';
+import { OperatorsPageComponent } from './operators-page.component';
 
 describe('OperatorsPageRowComponent', () => {
-  let component: OperatorsPageRowComponent;
+  let component: OperatorsPageComponent;
 
   //Todo : make the test pass
   describe('method1', () => {
@@ -24,7 +24,7 @@ describe('OperatorsPageRowComponent', () => {
     `(
       'When selected value is $selectedValue',
       ({ selectValue, expectedMarbles, expectedValues }) => {
-        component = new OperatorsPageRowComponent(
+        component = new OperatorsPageComponent(
           formBuilderGenerator(selectValue)
         );
         component.ngOnInit();
